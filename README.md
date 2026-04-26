@@ -1,6 +1,6 @@
-# Ghana Data & Airtime Hub
+# Elite-data1
 
-A website for selling data bundles and airtime in Ghana using MTN, Telecel, Airtel Tigo networks with Mobile Money payments.
+A platform for selling data bundles and airtime in Ghana using MTN, Telecel, Airtel Tigo networks with Mobile Money payments.
 
 ## Features
 
