@@ -20,6 +20,23 @@
         <section id="manage-bundles">
             <h2>Manage Data Bundles</h2>
             <ul id="bundles-list"></ul>
+            <h3>Add New Bundle</h3>
+            <form id="add-bundle-form">
+                <label for="add-name">Name:</label>
+                <input type="text" id="add-name" required>
+                <label for="add-price">Price (GHS):</label>
+                <input type="number" id="add-price" step="0.01" required>
+                <label for="add-details">Details:</label>
+                <textarea id="add-details"></textarea>
+                <label for="add-network">Network:</label>
+                <select id="add-network" required>
+                    <option value="MTN">MTN</option>
+                    <option value="Telecel">Telecel</option>
+                    <option value="Airtel Tigo">Airtel Tigo</option>
+                </select>
+                <button type="submit">Add Bundle</button>
+            </form>
+            <h3>Update Bundle</h3>
             <form id="update-bundle-form">
                 <label for="bundle-id">Bundle ID:</label>
                 <input type="text" id="bundle-id" required>
@@ -49,6 +66,7 @@
     <footer>
         <p>&copy; 2026 Elite-data1</p>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm//supabase-js"></script>
     <script src="js/app.js"></script>
     <script>
         async function loadBundles() {
@@ -84,6 +102,25 @@
                 list.appendChild(li);
             });
         }
+
+        document.getElementById('add-bundle-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('add-name').value;
+            const price = document.getElementById('add-price').value;
+            const details = document.getElementById('add-details').value;
+            const network = document.getElementById('add-network').value;
+            
+            if (!name || !price || !network) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            await addBundle(name, price, details, network);
+            alert('Bundle added!');
+            loadBundles();
+            // Clear form
+            document.getElementById('add-bundle-form').reset();
+        });
 
         document.getElementById('update-bundle-form').addEventListener('submit', async (e) => {
             e.preventDefault();

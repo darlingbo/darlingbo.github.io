@@ -105,6 +105,14 @@ async function purchase(bundleId, phoneNumber) {
 }
 
 // Admin functions
+async function addBundle(name, price, details, network) {
+    const { data, error } = await supabase
+        .from('bundles')
+        .insert([{ name, price, details, network }]);
+    if (error) console.error('Error adding bundle:', error);
+    return data;
+}
+
 async function updateBundle(id, price, details) {
     const { data, error } = await supabase
         .from('bundles')
